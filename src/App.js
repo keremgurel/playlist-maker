@@ -1,9 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import './App.css';
-import { Box, HStack, VStack } from '@chakra-ui/react';
+import { Box, HStack, VStack, Button } from '@chakra-ui/react';
 import SearchBar from 'components/SearchBar/SearchBar';
 import SearchResults from 'components/SearchResults/SearchResults';
 import Playlist from 'components/Playlist/Playlist';
+import Spotify from 'utils/Spotify';
 
 function App() {
 	const mockResults = [
@@ -21,6 +22,14 @@ function App() {
 	const [searchResults, setSearchResults] = useState(mockResults);
 	const [playlistTracks, setPlaylistTracks] = useState(mockPlaylist);
 	const [playlistName, setPlaylistName] = useState('New Playlist');
+	const [isAuthorized, setIsAuthorized] = useState(false);
+
+	useEffect(() => {
+		const token = localStorage.getItem('spotify_access_token');
+		if (token) {
+			setIsAuthorized(true);
+		}
+	}, []);
 
 	const updatePlaylistName = useCallback((e) => {
 		setPlaylistName(e.target.value);
@@ -47,22 +56,33 @@ function App() {
 		setPlaylistTracks([]);
 	}, []);
 
+	const handleConnectToSpotify = () => {
+		console.log('Connecting to Spotify...');
+		Spotify.getAccessToken();
+	};
+
 	return (
 		<div className='App'>
 			<Box className='App-header' height='100vh'>
-				<VStack spacing={12} height='100%' width='100%' p={4}>
-					<SearchBar />
-					<HStack spacing={4} flex={1} width='100%' alignItems='stretch'>
-						<SearchResults results={searchResults} handleAddToPlaylist={addToPlaylist} />
-						<Playlist
-							name={playlistName}
-							tracks={playlistTracks}
-							handleNameChange={updatePlaylistName}
-							handleRemoveFromPlaylist={removeFromPlaylist}
-							handleSavePlaylist={savePlaylist}
-						/>
-					</HStack>
-				</VStack>
+				{isAuthorized ? (
+					<VStack spacing={12} height='100%' width='100%' p={4}>
+						<SearchBar />
+						<HStack spacing={4} flex={1} width='100%' alignItems='stretch'>
+							<SearchResults results={searchResults} handleAddToPlaylist={addToPlaylist} />
+							<Playlist
+								name={playlistName}
+								tracks={playlistTracks}
+								handleNameChange={updatePlaylistName}
+								handleRemoveFromPlaylist={removeFromPlaylist}
+								handleSavePlaylist={savePlaylist}
+							/>
+						</HStack>
+					</VStack>
+				) : (
+					<Button colorScheme='blue' onClick={handleConnectToSpotify}>
+						Connect to Spotify
+					</Button>
+				)}
 			</Box>
 		</div>
 	);
