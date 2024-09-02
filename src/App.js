@@ -22,8 +22,8 @@ function App() {
 	const [playlistTracks, setPlaylistTracks] = useState(mockPlaylist);
 	const [playlistName, setPlaylistName] = useState('New Playlist');
 
-	const updatePlaylistName = useCallback((name) => {
-		setPlaylistName(name);
+	const updatePlaylistName = useCallback((e) => {
+		setPlaylistName(e.target.value);
 	}, []);
 
 	const addToPlaylist = useCallback((track) => {
@@ -43,8 +43,9 @@ function App() {
 	}, []);
 
 	const savePlaylist = useCallback(() => {
-		console.log('savePlaylist', playlistTracks);
-	}, [playlistTracks]);
+		alert('Playlist saved!');
+		setPlaylistTracks([]);
+	}, []);
 
 	return (
 		<div className='App'>
