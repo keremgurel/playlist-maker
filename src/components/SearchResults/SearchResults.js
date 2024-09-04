@@ -4,12 +4,12 @@ import Track from 'components/Track/Track';
 
 const SearchResults = ({ results, handleAddToPlaylist }) => {
 	return (
-		<Box backgroundColor='gray.800' p={6} borderRadius='md' height='100%' width='100%'>
-			<VStack height='100%' spacing={4}>
-				<Heading as='h2' size='lg'>
+		<Box p={6} height='80%' width='100%' alignItems='stretch'>
+			<VStack height='100%' spacing={4} textAlign='start'>
+				<Heading as='h2' size='lg' alignSelf='start'>
 					Search Results
 				</Heading>
-				<List spacing={3} overflowY='auto' flex={1} width='100%'>
+				<List spacing={3} width='100%'>
 					{results.map((result) => (
 						<Track key={result.id} track={result} onAction={handleAddToPlaylist} actionType='add' />
 					))}

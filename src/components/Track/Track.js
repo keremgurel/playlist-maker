@@ -10,8 +10,8 @@ const Track = ({ track, onAction, actionType }) => {
 					<Heading as='h3' size='md'>
 						{track.name}
 					</Heading>
-					<Text fontSize='md' color='gray.500'>
-						{track.artist} | {track.album}
+					<Text fontSize='md' color='gray.500' align='start'>
+						{track.artists} | {track.album}
 					</Text>
 				</VStack>
 				<IconButton

@@ -10,35 +10,42 @@ const Playlist = ({
 	handleSavePlaylist,
 }) => {
 	return (
-		<Box backgroundColor='gray.800' p={6} borderRadius='md' height='100%' width='100%'>
-			<VStack height='100%' spacing={4} alignItems='stretch'>
+		<Box
+			backgroundColor='gray.800'
+			p={6}
+			borderRadius='md'
+			height='100%'
+			width='100%'
+			display='flex'
+			flexDirection='column'
+		>
+			<VStack spacing={4} alignItems='stretch'>
 				<HStack spacing={6}>
 					<Heading as='h2' size='lg'>
 						Playlist:
 					</Heading>
 					<Input value={name} variant='flushed' placeholder='Name' onChange={handleNameChange} />
 				</HStack>
-				<VStack spacing={6} flex={1} width='100%' overflowY='auto'>
-					<List spacing={3} width='100%'>
-						{tracks.map((track) => (
-							<Track
-								key={track.id}
-								track={track}
-								onAction={handleRemoveFromPlaylist}
-								actionType='remove'
-							/>
-						))}
-					</List>
-					<Button
-						colorScheme='blue'
-						variant='outline'
-						width='100%'
-						height='50px'
-						onClick={handleSavePlaylist}
-					>
-						Save Playlist To Spotify
-					</Button>
-				</VStack>
+				<List spacing={3} width='100%'>
+					{tracks.map((track) => (
+						<Track
+							key={track.id}
+							track={track}
+							onAction={handleRemoveFromPlaylist}
+							actionType='remove'
+						/>
+					))}
+				</List>
+				<Button
+					colorScheme='blue'
+					variant='solid'
+					width='100%'
+					height='50px'
+					onClick={handleSavePlaylist}
+					mb={4}
+				>
+					Save Playlist To Spotify
+				</Button>
 			</VStack>
 		</Box>
 	);
