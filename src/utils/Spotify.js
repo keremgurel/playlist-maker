@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const clientId = '2c03b3bc24224a8881cefd73d481ce44';
-const redirectUri = 'http://localhost:3000';
+const redirectUri = 'https://playlist.keremg.com/';
 
 const Spotify = {
 	connect() {
