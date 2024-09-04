@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-const clientId = '2c03b3bc24224a8881cefd73d481ce44';
-const redirectUri = 'https://playlist.keremg.com/';
+const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+const redirectUri =
+	process.env.NODE_ENV === 'production' ? 'https://playlist.keremg.com/' : 'http://localhost:3000/';
 
 const Spotify = {
 	connect() {
 		const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 		window.location = accessUrl;
+
+		console.log(redirectUri);
 	},
 
 	getAccessToken() {

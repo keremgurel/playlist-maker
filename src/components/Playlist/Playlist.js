@@ -1,14 +1,8 @@
 import React from 'react';
-import { VStack, HStack, Heading, List, Button, Box, Input } from '@chakra-ui/react';
+import { VStack, HStack, Heading, List, Box, Input } from '@chakra-ui/react';
 import Track from 'components/Track/Track';
 
-const Playlist = ({
-	name,
-	tracks,
-	handleNameChange,
-	handleRemoveFromPlaylist,
-	handleSavePlaylist,
-}) => {
+const Playlist = ({ name, tracks, handleNameChange, handleRemoveFromPlaylist }) => {
 	return (
 		<Box
 			backgroundColor='gray.800'
@@ -21,7 +15,7 @@ const Playlist = ({
 		>
 			<VStack spacing={4} alignItems='stretch'>
 				<HStack spacing={6}>
-					<Heading as='h2' size='lg'>
+					<Heading as='h2' fontSize={{ base: 'xl', md: '2xl', lg: '2xl' }}>
 						Playlist:
 					</Heading>
 					<Input value={name} variant='flushed' placeholder='Name' onChange={handleNameChange} />
@@ -36,16 +30,6 @@ const Playlist = ({
 						/>
 					))}
 				</List>
-				<Button
-					colorScheme='blue'
-					variant='solid'
-					width='100%'
-					height='50px'
-					onClick={handleSavePlaylist}
-					mb={4}
-				>
-					Save Playlist To Spotify
-				</Button>
 			</VStack>
 		</Box>
 	);

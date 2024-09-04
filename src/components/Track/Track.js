@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem, HStack, VStack, Heading, Text, IconButton } from '@chakra-ui/react';
+import { ListItem, HStack, VStack, Text, IconButton } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 
 const Track = ({ track, onAction, actionType }) => {
@@ -7,10 +7,10 @@ const Track = ({ track, onAction, actionType }) => {
 		<ListItem p={3} borderWidth={1} borderRadius='md'>
 			<HStack justify='space-between' align='start'>
 				<VStack align='start' spacing={1}>
-					<Heading as='h3' size='md'>
+					<Text align='start' fontSize={{ base: 'sm', md: 'md' }} fontWeight='bold'>
 						{track.name}
-					</Heading>
-					<Text fontSize='md' color='gray.500' align='start'>
+					</Text>
+					<Text align='start' color='gray.500' fontSize={{ base: 'xs', md: 'sm' }}>
 						{track.artists} | {track.album}
 					</Text>
 				</VStack>

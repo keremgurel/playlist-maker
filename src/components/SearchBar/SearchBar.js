@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Box, Button, Input } from '@chakra-ui/react';
+import { HStack, Button, Input } from '@chakra-ui/react';
 
 const SearchBar = ({ handleSearch }) => {
 	const [searchInput, setSearchInput] = useState('');
@@ -19,19 +19,24 @@ const SearchBar = ({ handleSearch }) => {
 	};
 
 	return (
-		<div>
-			<Box display='flex' gap={4} mt={16}>
-				<Input
-					placeholder='Search Tracks'
-					value={searchInput}
-					onChange={handleInputChange}
-					onKeyPress={handleKeyPress}
-				/>
-				<Button colorScheme='blue' onClick={handleSearchClick} variant='outline'>
-					Search
-				</Button>
-			</Box>
-		</div>
+		<HStack width='100%' spacing={4}>
+			<Input
+				placeholder='Search Tracks'
+				value={searchInput}
+				onChange={handleInputChange}
+				onKeyPress={handleKeyPress}
+				size='lg'
+				flex={1}
+			/>
+			<Button
+				colorScheme='blue'
+				onClick={handleSearchClick}
+				size='lg'
+				width={{ base: 'auto', md: '150px' }}
+			>
+				Search
+			</Button>
+		</HStack>
 	);
 };
 

@@ -6,7 +6,13 @@ const SearchResults = ({ results, handleAddToPlaylist }) => {
 	return (
 		<Box p={6} height='80%' width='100%' alignItems='stretch'>
 			<VStack height='100%' spacing={4} textAlign='start'>
-				<Heading as='h2' size='lg' alignSelf='start'>
+				<Heading
+					as='h2'
+					fontSize={{ base: 'xl', md: '2xl', lg: '2xl' }}
+					alignSelf='start'
+					pt={1}
+					pb={2}
+				>
 					Search Results
 				</Heading>
 				<List spacing={3} width='100%'>
