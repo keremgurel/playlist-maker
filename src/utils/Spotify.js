@@ -9,7 +9,7 @@ const Spotify = {
 		const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 		window.location = accessUrl;
 
-		console.log(redirectUri);
+		this.getAccessToken();
 	},
 
 	getAccessToken() {
@@ -43,12 +43,13 @@ const Spotify = {
 			window.history.pushState('Access Token', null, '/');
 			return accessToken;
 		}
-		return null;
+		this.connect();
 	},
 
 	async search(searchInput) {
 		const accessToken = await this.getAccessToken();
 		if (!accessToken || !searchInput) {
+			console.error('No access token or search input');
 			return [];
 		}
 
